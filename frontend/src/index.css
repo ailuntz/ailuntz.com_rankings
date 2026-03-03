@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 统一的主题配置 */
+@theme {
+  /* 白天模式颜色 */
+  --color-bg-base: rgb(249 250 251);
+  --color-bg-card: rgb(255 255 255);
+  --color-bg-tab: rgb(243 244 246);
+  --color-bg-tab-active: rgb(255 255 255);
+
+  --color-text-primary: rgb(17 24 39);
+  --color-text-secondary: rgb(55 65 81);
+  --color-text-tertiary: rgb(75 85 99);
+
+  --color-border: rgb(229 231 235);
+  --color-border-hover: rgb(147 197 253);
+
+  /* 渐变背景 */
+  --color-gradient-from: rgb(239 246 255);
+  --color-gradient-via: rgb(250 245 255);
+  --color-gradient-to: rgb(253 242 248);
+
+  /* Badge 颜色 */
+  --color-badge-secondary-bg: rgb(243 244 246);
+  --color-badge-secondary-text: rgb(17 24 39);
+}
+
+.dark {
+  /* 暗黑模式颜色 */
+  --color-bg-base: rgb(2 6 23);
+  --color-bg-card: rgb(15 23 42);
+  --color-bg-tab: rgb(30 41 59);
+  --color-bg-tab-active: rgb(51 65 85);
+
+  --color-text-primary: rgb(249 250 251);
+  --color-text-secondary: rgb(229 231 235);
+  --color-text-tertiary: rgb(209 213 219);
+
+  --color-border: rgb(51 65 85);
+  --color-border-hover: rgb(29 78 216);
+
+  /* 渐变背景 */
+  --color-gradient-from: rgb(2 6 23);
+  --color-gradient-via: rgb(15 23 42);
+  --color-gradient-to: rgb(2 6 23);
+
+  /* Badge 颜色 */
+  --color-badge-secondary-bg: rgb(51 65 85);
+  --color-badge-secondary-text: rgb(229 231 235);
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

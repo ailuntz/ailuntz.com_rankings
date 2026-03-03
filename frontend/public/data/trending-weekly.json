@@ -1,0 +1,112 @@
+[
+  {
+    "rank": 1,
+    "full_name": "mountain-loop/yaak",
+    "language": "TypeScript",
+    "color": "#3178c6",
+    "description": "The most intuitive desktop API client. Organize and execute REST, GraphQL, WebSockets, Server Sent Events, and gRPC 🦬",
+    "forked": "475",
+    "stargazers_count": 13643,
+    "todayStar": "5540 stars this week",
+    "html_url": "https://github.com/mountain-loop/yaak"
+  },
+  {
+    "rank": 2,
+    "full_name": "anthropics/claude-cookbooks",
+    "language": "JupyterNotebook",
+    "color": "#DA5B0B",
+    "description": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.",
+    "forked": "2542",
+    "stargazers_count": 25244,
+    "todayStar": "4155 stars this week",
+    "html_url": "https://github.com/anthropics/claude-cookbooks"
+  },
+  {
+    "rank": 3,
+    "full_name": "DrewThomasson/ebook2audiobook",
+    "language": "Python",
+    "color": "#3572A5",
+    "description": "Generate audiobooks from e-books, voice cloning & 1107+ languages!",
+    "forked": "1026",
+    "stargazers_count": 13641,
+    "todayStar": "1950 stars this week",
+    "html_url": "https://github.com/DrewThomasson/ebook2audiobook"
+  },
+  {
+    "rank": 4,
+    "full_name": "lfnovo/open-notebook",
+    "language": "TypeScript",
+    "color": "#3178c6",
+    "description": "An Open Source implementation of Notebook LM with more flexibility and features",
+    "forked": "790",
+    "stargazers_count": 7958,
+    "todayStar": "2834 stars this week",
+    "html_url": "https://github.com/lfnovo/open-notebook"
+  },
+  {
+    "rank": 5,
+    "full_name": "jingyaogong/minimind",
+    "language": "Python",
+    "color": "#3572A5",
+    "description": "🚀🚀 「大模型」2小时完全从0训练26M的小参数GPT！🌏 Train a 26M-parameter GPT from scratch in just 2h!",
+    "forked": "3621",
+    "stargazers_count": 31523,
+    "todayStar": "3011 stars this week",
+    "html_url": "https://github.com/jingyaogong/minimind"
+  },
+  {
+    "rank": 6,
+    "full_name": "minio/minio",
+    "language": "Go",
+    "color": "#00ADD8",
+    "description": "MinIO is a high-performance, S3 compatible object store, open sourced under GNU AGPLv3 license.",
+    "forked": "6354",
+    "stargazers_count": 57160,
+    "todayStar": "1426 stars this week",
+    "html_url": "https://github.com/minio/minio"
+  },
+  {
+    "rank": 7,
+    "full_name": "karpathy/nanoGPT",
+    "language": "Python",
+    "color": "#3572A5",
+    "description": "The simplest, fastest repository for training/finetuning medium-sized GPTs.",
+    "forked": "8022",
+    "stargazers_count": 47828,
+    "todayStar": "1377 stars this week",
+    "html_url": "https://github.com/karpathy/nanoGPT"
+  },
+  {
+    "rank": 8,
+    "full_name": "PaddlePaddle/PaddleOCR",
+    "language": "Python",
+    "color": "#3572A5",
+    "description": "Turn any PDF or image document into structured data for your AI. A powerful, lightweight OCR toolkit that bridges the gap between images/PDFs and LLMs. Supports 100+ languages.",
+    "forked": "9116",
+    "stargazers_count": 61059,
+    "todayStar": "3277 stars this week",
+    "html_url": "https://github.com/PaddlePaddle/PaddleOCR"
+  },
+  {
+    "rank": 9,
+    "full_name": "clockworklabs/SpacetimeDB",
+    "language": "Rust",
+    "color": "#dea584",
+    "description": "Multiplayer at the speed of light",
+    "forked": "640",
+    "stargazers_count": 18373,
+    "todayStar": "680 stars this week",
+    "html_url": "https://github.com/clockworklabs/SpacetimeDB"
+  },
+  {
+    "rank": 10,
+    "full_name": "karpathy/micrograd",
+    "language": "JupyterNotebook",
+    "color": "#DA5B0B",
+    "description": "A tiny scalar-valued autograd engine and a neural net library on top of it with PyTorch-like API",
+    "forked": "1972",
+    "stargazers_count": 13407,
+    "todayStar": "458 stars this week",
+    "html_url": "https://github.com/karpathy/micrograd"
+  }
+]

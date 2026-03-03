@@ -1,0 +1,112 @@
+[
+  {
+    "login": "ruanyf",
+    "id": 905434,
+    "avatar_url": "https://avatars.githubusercontent.com/u/905434?v=4",
+    "html_url": "https://github.com/ruanyf",
+    "followers": 84433,
+    "following": 0,
+    "public_repos": 74,
+    "created_at": "2011-07-10T01:07:17Z",
+    "rank": 1
+  },
+  {
+    "login": "michaelliao",
+    "id": 470058,
+    "avatar_url": "https://avatars.githubusercontent.com/u/470058?v=4",
+    "html_url": "https://github.com/michaelliao",
+    "followers": 38166,
+    "following": 3,
+    "public_repos": 106,
+    "created_at": "2010-11-06T12:21:35Z",
+    "rank": 2
+  },
+  {
+    "login": "daimajia",
+    "id": 2503423,
+    "avatar_url": "https://avatars.githubusercontent.com/u/2503423?v=4",
+    "html_url": "https://github.com/daimajia",
+    "followers": 24890,
+    "following": 272,
+    "public_repos": 91,
+    "created_at": "2012-10-07T02:40:06Z",
+    "rank": 3
+  },
+  {
+    "login": "programthink",
+    "id": 4027957,
+    "avatar_url": "https://avatars.githubusercontent.com/u/4027957?v=4",
+    "html_url": "https://github.com/programthink",
+    "followers": 22186,
+    "following": 0,
+    "public_repos": 5,
+    "created_at": "2013-04-01T15:34:44Z",
+    "rank": 4
+  },
+  {
+    "login": "cloudwu",
+    "id": 729648,
+    "avatar_url": "https://avatars.githubusercontent.com/u/729648?v=4",
+    "html_url": "https://github.com/cloudwu",
+    "followers": 21511,
+    "following": 2,
+    "public_repos": 138,
+    "created_at": "2011-04-14T15:57:13Z",
+    "rank": 5
+  },
+  {
+    "login": "JacksonTian",
+    "id": 327019,
+    "avatar_url": "https://avatars.githubusercontent.com/u/327019?v=4",
+    "html_url": "https://github.com/JacksonTian",
+    "followers": 21320,
+    "following": 208,
+    "public_repos": 271,
+    "created_at": "2010-07-09T02:46:57Z",
+    "rank": 6
+  },
+  {
+    "login": "phodal",
+    "id": 472311,
+    "avatar_url": "https://avatars.githubusercontent.com/u/472311?v=4",
+    "html_url": "https://github.com/phodal",
+    "followers": 20425,
+    "following": 9,
+    "public_repos": 371,
+    "created_at": "2010-11-08T11:46:51Z",
+    "rank": 7
+  },
+  {
+    "login": "liyupi",
+    "id": 26037703,
+    "avatar_url": "https://avatars.githubusercontent.com/u/26037703?v=4",
+    "html_url": "https://github.com/liyupi",
+    "followers": 19921,
+    "following": 29,
+    "public_repos": 94,
+    "created_at": "2017-02-26T08:44:22Z",
+    "rank": 8
+  },
+  {
+    "login": "alibaba",
+    "id": 1961952,
+    "avatar_url": "https://avatars.githubusercontent.com/u/1961952?v=4",
+    "html_url": "https://github.com/alibaba",
+    "followers": 17541,
+    "following": 0,
+    "public_repos": 474,
+    "created_at": "2012-07-12T08:40:35Z",
+    "rank": 9
+  },
+  {
+    "login": "halfrost",
+    "id": 10825609,
+    "avatar_url": "https://avatars.githubusercontent.com/u/10825609?v=4",
+    "html_url": "https://github.com/halfrost",
+    "followers": 17366,
+    "following": 361,
+    "public_repos": 32,
+    "created_at": "2015-02-03T07:01:48Z",
+    "rank": 10
+  }
+]

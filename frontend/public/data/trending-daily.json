@@ -1,0 +1,112 @@
+[
+  {
+    "rank": 1,
+    "full_name": "LadybirdBrowser/ladybird",
+    "language": "C++",
+    "color": "#f34b7d",
+    "description": "Truly independent web browser",
+    "forked": "2243",
+    "stargazers_count": 51021,
+    "todayStar": "312 stars today",
+    "html_url": "https://github.com/LadybirdBrowser/ladybird"
+  },
+  {
+    "rank": 2,
+    "full_name": "guofei9987/blind_watermark",
+    "language": "Python",
+    "color": "#3572A5",
+    "description": "Blind&Invisible Watermark ，图片盲水印，提取水印无须原图！",
+    "forked": "979",
+    "stargazers_count": 9449,
+    "todayStar": "681 stars today",
+    "html_url": "https://github.com/guofei9987/blind_watermark"
+  },
+  {
+    "rank": 3,
+    "full_name": "hoppscotch/hoppscotch",
+    "language": "TypeScript",
+    "color": "#3178c6",
+    "description": "Open source API development ecosystem - https://hoppscotch.io (open-source alternative to Postman, Insomnia)",
+    "forked": "5314",
+    "stargazers_count": 75588,
+    "todayStar": "363 stars today",
+    "html_url": "https://github.com/hoppscotch/hoppscotch"
+  },
+  {
+    "rank": 4,
+    "full_name": "zephyrproject-rtos/zephyr",
+    "language": "C",
+    "color": "#555555",
+    "description": "Primary Git Repository for the Zephyr Project. Zephyr is a new generation, scalable, optimized, secure RTOS for multiple hardware architectures.",
+    "forked": "8102",
+    "stargazers_count": 13381,
+    "todayStar": "33 stars today",
+    "html_url": "https://github.com/zephyrproject-rtos/zephyr"
+  },
+  {
+    "rank": 5,
+    "full_name": "minio/minio",
+    "language": "Go",
+    "color": "#00ADD8",
+    "description": "MinIO is a high-performance, S3 compatible object store, open sourced under GNU AGPLv3 license.",
+    "forked": "6348",
+    "stargazers_count": 57094,
+    "todayStar": "1140 stars today",
+    "html_url": "https://github.com/minio/minio"
+  },
+  {
+    "rank": 6,
+    "full_name": "emcie-co/parlant",
+    "language": "Python",
+    "color": "#3572A5",
+    "description": "LLM agents built for control. Designed for real-world use. Deployed in minutes.",
+    "forked": "1186",
+    "stargazers_count": 14589,
+    "todayStar": "137 stars today",
+    "html_url": "https://github.com/emcie-co/parlant"
+  },
+  {
+    "rank": 7,
+    "full_name": "zyronon/TypeWords",
+    "language": "Vue",
+    "color": "#41b883",
+    "description": "练习英语，一次敲击，一点进步；Practice English, one strike, one step forward",
+    "forked": "535",
+    "stargazers_count": 4556,
+    "todayStar": "77 stars today",
+    "html_url": "https://github.com/zyronon/TypeWords"
+  },
+  {
+    "rank": 8,
+    "full_name": "paperless-ngx/paperless-ngx",
+    "language": "Python",
+    "color": "#3572A5",
+    "description": "A community-supported supercharged document management system: scan, index and archive all your documents",
+    "forked": "2081",
+    "stargazers_count": 33325,
+    "todayStar": "239 stars today",
+    "html_url": "https://github.com/paperless-ngx/paperless-ngx"
+  },
+  {
+    "rank": 9,
+    "full_name": "PowerShell/PowerShell",
+    "language": "C#",
+    "color": "#178600",
+    "description": "PowerShell for every system!",
+    "forked": "8008",
+    "stargazers_count": 50454,
+    "todayStar": "37 stars today",
+    "html_url": "https://github.com/PowerShell/PowerShell"
+  },
+  {
+    "rank": 10,
+    "full_name": "Lightricks/LTX-Video",
+    "language": "Python",
+    "color": "#3572A5",
+    "description": "Official repository for LTX-Video",
+    "forked": "753",
+    "stargazers_count": 8404,
+    "todayStar": "57 stars today",
+    "html_url": "https://github.com/Lightricks/LTX-Video"
+  }
+]

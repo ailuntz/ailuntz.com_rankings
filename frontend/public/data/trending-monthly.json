@@ -1,0 +1,112 @@
+[
+  {
+    "rank": 1,
+    "full_name": "harry0703/MoneyPrinterTurbo",
+    "language": "Python",
+    "color": "#3572A5",
+    "description": "利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.",
+    "forked": "6582",
+    "stargazers_count": 47117,
+    "todayStar": "7282 stars this month",
+    "html_url": "https://github.com/harry0703/MoneyPrinterTurbo"
+  },
+  {
+    "rank": 2,
+    "full_name": "anthropics/prompt-eng-interactive-tutorial",
+    "language": "JupyterNotebook",
+    "color": "#DA5B0B",
+    "description": "Anthropic's Interactive Prompt Engineering Tutorial",
+    "forked": "2275",
+    "stargazers_count": 25023,
+    "todayStar": "6624 stars this month",
+    "html_url": "https://github.com/anthropics/prompt-eng-interactive-tutorial"
+  },
+  {
+    "rank": 3,
+    "full_name": "anthropics/claude-cookbooks",
+    "language": "JupyterNotebook",
+    "color": "#DA5B0B",
+    "description": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.",
+    "forked": "2542",
+    "stargazers_count": 25244,
+    "todayStar": "5110 stars this month",
+    "html_url": "https://github.com/anthropics/claude-cookbooks"
+  },
+  {
+    "rank": 4,
+    "full_name": "TibixDev/winboat",
+    "language": "TypeScript",
+    "color": "#3178c6",
+    "description": "Run Windows apps on 🐧 Linux with ✨ seamless integration",
+    "forked": "338",
+    "stargazers_count": 13485,
+    "todayStar": "8715 stars this month",
+    "html_url": "https://github.com/TibixDev/winboat"
+  },
+  {
+    "rank": 5,
+    "full_name": "humanlayer/humanlayer",
+    "language": "TypeScript",
+    "color": "#3178c6",
+    "description": "The best way to get AI coding agents to solve hard problems in complex codebases.",
+    "forked": "498",
+    "stargazers_count": 6454,
+    "todayStar": "3816 stars this month",
+    "html_url": "https://github.com/humanlayer/humanlayer"
+  },
+  {
+    "rank": 6,
+    "full_name": "evershopcommerce/evershop",
+    "language": "TypeScript",
+    "color": "#3178c6",
+    "description": "🛍️ Typescript E-commerce Platform",
+    "forked": "1986",
+    "stargazers_count": 8255,
+    "todayStar": "2556 stars this month",
+    "html_url": "https://github.com/evershopcommerce/evershop"
+  },
+  {
+    "rank": 7,
+    "full_name": "karpathy/nanoGPT",
+    "language": "Python",
+    "color": "#3572A5",
+    "description": "The simplest, fastest repository for training/finetuning medium-sized GPTs.",
+    "forked": "8022",
+    "stargazers_count": 47828,
+    "todayStar": "3174 stars this month",
+    "html_url": "https://github.com/karpathy/nanoGPT"
+  },
+  {
+    "rank": 8,
+    "full_name": "supermemoryai/supermemory",
+    "language": "TypeScript",
+    "color": "#3178c6",
+    "description": "Memory engine and app that is extremely fast, scalable. The Memory API for the AI era.",
+    "forked": "1339",
+    "stargazers_count": 12890,
+    "todayStar": "1957 stars this month",
+    "html_url": "https://github.com/supermemoryai/supermemory"
+  },
+  {
+    "rank": 9,
+    "full_name": "QwenLM/Qwen3-VL",
+    "language": "JupyterNotebook",
+    "color": "#DA5B0B",
+    "description": "Qwen3-VL is the multimodal large language model series developed by Qwen team, Alibaba Cloud.",
+    "forked": "1201",
+    "stargazers_count": 15450,
+    "todayStar": "2499 stars this month",
+    "html_url": "https://github.com/QwenLM/Qwen3-VL"
+  },
+  {
+    "rank": 10,
+    "full_name": "DrewThomasson/ebook2audiobook",
+    "language": "Python",
+    "color": "#3572A5",
+    "description": "Generate audiobooks from e-books, voice cloning & 1107+ languages!",
+    "forked": "1026",
+    "stargazers_count": 13641,
+    "todayStar": "2262 stars this month",
+    "html_url": "https://github.com/DrewThomasson/ebook2audiobook"
+  }
+]

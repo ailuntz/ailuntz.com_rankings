@@ -1,0 +1,36 @@
+{
+  "name": "github-rank-backend",
+  "version": "1.0.0",
+  "description": "GitHub Ranking Backend - Simple data fetcher",
+  "type": "module",
+  "scripts": {
+    "fetch:users": "node dist/fetchUsers.js",
+    "fetch:users:china": "node dist/fetchUsers.js --china",
+    "fetch:users:org": "node dist/fetchUsers.js --org",
+    "fetch:repos": "node dist/fetchRepos.js",
+    "fetch:trending": "node dist/fetchTrending.js daily",
+    "fetch:trending:weekly": "node dist/fetchTrending.js weekly",
+    "fetch:trending:monthly": "node dist/fetchTrending.js monthly",
+    "fetch:all": "npm run fetch:users && npm run fetch:users:china && npm run fetch:users:org && npm run fetch:repos && npm run fetch:trending && npm run fetch:trending:weekly && npm run fetch:trending:monthly",
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist data"
+  },
+  "keywords": [
+    "github",
+    "ranking",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@octokit/request": "^9.1.0",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.4.0",
+    "node-fetch": "^3.3.2"
+  }
+}

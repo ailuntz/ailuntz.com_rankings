@@ -1,0 +1,112 @@
+[
+  {
+    "login": "torvalds",
+    "id": 1024025,
+    "avatar_url": "https://avatars.githubusercontent.com/u/1024025?v=4",
+    "html_url": "https://github.com/torvalds",
+    "followers": 253282,
+    "following": 0,
+    "public_repos": 9,
+    "created_at": "2011-09-03T15:26:22Z",
+    "rank": 1
+  },
+  {
+    "login": "karpathy",
+    "id": 241138,
+    "avatar_url": "https://avatars.githubusercontent.com/u/241138?v=4",
+    "html_url": "https://github.com/karpathy",
+    "followers": 117380,
+    "following": 8,
+    "public_repos": 57,
+    "created_at": "2010-04-10T17:55:32Z",
+    "rank": 2
+  },
+  {
+    "login": "openai",
+    "id": 14957082,
+    "avatar_url": "https://avatars.githubusercontent.com/u/14957082?v=4",
+    "html_url": "https://github.com/openai",
+    "followers": 106987,
+    "following": 0,
+    "public_repos": 224,
+    "created_at": "2015-10-03T19:34:05Z",
+    "rank": 3
+  },
+  {
+    "login": "gustavoguanabara",
+    "id": 8683378,
+    "avatar_url": "https://avatars.githubusercontent.com/u/8683378?v=4",
+    "html_url": "https://github.com/gustavoguanabara",
+    "followers": 106196,
+    "following": 3,
+    "public_repos": 8,
+    "created_at": "2014-09-07T03:56:50Z",
+    "rank": 4
+  },
+  {
+    "login": "yyx990803",
+    "id": 499550,
+    "avatar_url": "https://avatars.githubusercontent.com/u/499550?v=4",
+    "html_url": "https://github.com/yyx990803",
+    "followers": 105786,
+    "following": 100,
+    "public_repos": 198,
+    "created_at": "2010-11-28T01:05:40Z",
+    "rank": 5
+  },
+  {
+    "login": "microsoft",
+    "id": 6154722,
+    "avatar_url": "https://avatars.githubusercontent.com/u/6154722?v=4",
+    "html_url": "https://github.com/microsoft",
+    "followers": 105272,
+    "following": 0,
+    "public_repos": 7262,
+    "created_at": "2013-12-10T19:06:48Z",
+    "rank": 6
+  },
+  {
+    "login": "gaearon",
+    "id": 810438,
+    "avatar_url": "https://avatars.githubusercontent.com/u/810438?v=4",
+    "html_url": "https://github.com/gaearon",
+    "followers": 89965,
+    "following": 174,
+    "public_repos": 288,
+    "created_at": "2011-05-25T18:18:31Z",
+    "rank": 7
+  },
+  {
+    "login": "peng-zhihui",
+    "id": 12994887,
+    "avatar_url": "https://avatars.githubusercontent.com/u/12994887?v=4",
+    "html_url": "https://github.com/peng-zhihui",
+    "followers": 85258,
+    "following": 9,
+    "public_repos": 59,
+    "created_at": "2015-06-22T04:59:39Z",
+    "rank": 8
+  },
+  {
+    "login": "ruanyf",
+    "id": 905434,
+    "avatar_url": "https://avatars.githubusercontent.com/u/905434?v=4",
+    "html_url": "https://github.com/ruanyf",
+    "followers": 84433,
+    "following": 0,
+    "public_repos": 74,
+    "created_at": "2011-07-10T01:07:17Z",
+    "rank": 9
+  },
+  {
+    "login": "deepseek-ai",
+    "id": 148330874,
+    "avatar_url": "https://avatars.githubusercontent.com/u/148330874?v=4",
+    "html_url": "https://github.com/deepseek-ai",
+    "followers": 81575,
+    "following": 0,
+    "public_repos": 28,
+    "created_at": "2023-10-18T09:17:52Z",
+    "rank": 10
+  }
+]

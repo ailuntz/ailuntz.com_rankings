@@ -1,0 +1,254 @@
+[
+  {
+    "full_name": "freeCodeCamp/freeCodeCamp",
+    "html_url": "https://github.com/freeCodeCamp/freeCodeCamp",
+    "description": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
+    "stargazers_count": 430709,
+    "forks_count": 42099,
+    "language": "TypeScript",
+    "owner": {
+      "login": "freeCodeCamp",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9892522?v=4"
+    },
+    "updated_at": "2025-10-24T16:46:29Z",
+    "topics": [
+      "careers",
+      "certification",
+      "community",
+      "curriculum",
+      "d3",
+      "education",
+      "freecodecamp",
+      "javascript",
+      "learn-to-code",
+      "math",
+      "nodejs",
+      "nonprofits",
+      "programming",
+      "react",
+      "teachers"
+    ],
+    "rank": 1
+  },
+  {
+    "full_name": "codecrafters-io/build-your-own-x",
+    "html_url": "https://github.com/codecrafters-io/build-your-own-x",
+    "description": "Master programming by recreating your favorite technologies from scratch.",
+    "stargazers_count": 429241,
+    "forks_count": 40276,
+    "language": "Markdown",
+    "owner": {
+      "login": "codecrafters-io",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58904235?v=4"
+    },
+    "updated_at": "2025-10-24T16:52:53Z",
+    "topics": [
+      "awesome-list",
+      "free",
+      "programming",
+      "tutorial-code",
+      "tutorial-exercises",
+      "tutorials"
+    ],
+    "rank": 2
+  },
+  {
+    "full_name": "sindresorhus/awesome",
+    "html_url": "https://github.com/sindresorhus/awesome",
+    "description": "😎 Awesome lists about all kinds of interesting topics",
+    "stargazers_count": 409158,
+    "forks_count": 31995,
+    "language": null,
+    "owner": {
+      "login": "sindresorhus",
+      "avatar_url": "https://avatars.githubusercontent.com/u/170270?v=4"
+    },
+    "updated_at": "2025-10-24T16:51:19Z",
+    "topics": [
+      "awesome",
+      "awesome-list",
+      "lists",
+      "resources",
+      "unicorns"
+    ],
+    "rank": 3
+  },
+  {
+    "full_name": "EbookFoundation/free-programming-books",
+    "html_url": "https://github.com/EbookFoundation/free-programming-books",
+    "description": ":books: Freely available programming books",
+    "stargazers_count": 374821,
+    "forks_count": 65095,
+    "language": "Python",
+    "owner": {
+      "login": "EbookFoundation",
+      "avatar_url": "https://avatars.githubusercontent.com/u/14127308?v=4"
+    },
+    "updated_at": "2025-10-24T16:39:45Z",
+    "topics": [
+      "books",
+      "education",
+      "hacktoberfest",
+      "list",
+      "resource"
+    ],
+    "rank": 4
+  },
+  {
+    "full_name": "public-apis/public-apis",
+    "html_url": "https://github.com/public-apis/public-apis",
+    "description": "A collective list of free APIs",
+    "stargazers_count": 371966,
+    "forks_count": 39230,
+    "language": "Python",
+    "owner": {
+      "login": "public-apis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/51121562?v=4"
+    },
+    "updated_at": "2025-10-24T16:46:50Z",
+    "topics": [
+      "api",
+      "apis",
+      "dataset",
+      "development",
+      "free",
+      "list",
+      "lists",
+      "open-source",
+      "public",
+      "public-api",
+      "public-apis",
+      "resources",
+      "software"
+    ],
+    "rank": 5
+  },
+  {
+    "full_name": "kamranahmedse/developer-roadmap",
+    "html_url": "https://github.com/kamranahmedse/developer-roadmap",
+    "description": "Interactive roadmaps, guides and other educational content to help developers grow in their careers.",
+    "stargazers_count": 341875,
+    "forks_count": 43209,
+    "language": "TypeScript",
+    "owner": {
+      "login": "kamranahmedse",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4921183?v=4"
+    },
+    "updated_at": "2025-10-24T16:51:16Z",
+    "topics": [
+      "angular-roadmap",
+      "backend-roadmap",
+      "blockchain-roadmap",
+      "computer-science",
+      "dba-roadmap",
+      "developer-roadmap",
+      "devops-roadmap",
+      "frontend-roadmap",
+      "go-roadmap",
+      "java-roadmap",
+      "javascript-roadmap",
+      "nodejs-roadmap",
+      "python-roadmap",
+      "qa-roadmap",
+      "react-roadmap",
+      "roadmap",
+      "software-architect-roadmap",
+      "vue-roadmap"
+    ],
+    "rank": 6
+  },
+  {
+    "full_name": "jwasham/coding-interview-university",
+    "html_url": "https://github.com/jwasham/coding-interview-university",
+    "description": "A complete computer science study plan to become a software engineer.",
+    "stargazers_count": 331780,
+    "forks_count": 81025,
+    "language": null,
+    "owner": {
+      "login": "jwasham",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3771963?v=4"
+    },
+    "updated_at": "2025-10-24T16:49:35Z",
+    "topics": [
+      "algorithm",
+      "algorithms",
+      "coding-interview",
+      "coding-interviews",
+      "computer-science",
+      "data-structures",
+      "interview",
+      "interview-prep",
+      "interview-preparation",
+      "programming-interviews",
+      "software-engineering",
+      "study-plan"
+    ],
+    "rank": 7
+  },
+  {
+    "full_name": "donnemartin/system-design-primer",
+    "html_url": "https://github.com/donnemartin/system-design-primer",
+    "description": "Learn how to design large-scale systems. Prep for the system design interview.  Includes Anki flashcards.",
+    "stargazers_count": 323793,
+    "forks_count": 52817,
+    "language": "Python",
+    "owner": {
+      "login": "donnemartin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5458997?v=4"
+    },
+    "updated_at": "2025-10-24T16:52:34Z",
+    "topics": [
+      "design",
+      "design-patterns",
+      "design-system",
+      "development",
+      "interview",
+      "interview-practice",
+      "interview-questions",
+      "programming",
+      "python",
+      "system",
+      "web",
+      "web-application",
+      "webapp"
+    ],
+    "rank": 8
+  },
+  {
+    "full_name": "996icu/996.ICU",
+    "html_url": "https://github.com/996icu/996.ICU",
+    "description": "Repo for counting stars and contributing. Press F to pay respect to glorious developers.",
+    "stargazers_count": 274679,
+    "forks_count": 21037,
+    "language": null,
+    "owner": {
+      "login": "996icu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48942249?v=4"
+    },
+    "updated_at": "2025-10-24T16:17:55Z",
+    "topics": [],
+    "rank": 9
+  },
+  {
+    "full_name": "vinta/awesome-python",
+    "html_url": "https://github.com/vinta/awesome-python",
+    "description": "An opinionated list of awesome Python frameworks, libraries, software and resources.",
+    "stargazers_count": 266064,
+    "forks_count": 26552,
+    "language": "Python",
+    "owner": {
+      "login": "vinta",
+      "avatar_url": "https://avatars.githubusercontent.com/u/652070?v=4"
+    },
+    "updated_at": "2025-10-24T16:44:24Z",
+    "topics": [
+      "awesome",
+      "collections",
+      "python",
+      "python-framework",
+      "python-library",
+      "python-resources"
+    ],
+    "rank": 10
+  }
+]
