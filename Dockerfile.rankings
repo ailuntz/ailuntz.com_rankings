@@ -1,0 +1,24 @@
+FROM node:20-alpine AS rank-build
+WORKDIR /app/rank
+COPY rank/package*.json ./
+RUN npm ci
+COPY rank/ ./
+RUN npm run build && npm prune --omit=dev
+
+FROM node:20-alpine AS runtime
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV PORT=8080
+ENV DATA_DIR=/app/data
+ENV AUTO_FETCH=true
+ENV FETCH_INTERVAL_MINUTES=360
+ENV CORS_ALLOW_ORIGIN=*
+
+COPY --from=rank-build /app/rank/dist /app/rank/dist
+COPY --from=rank-build /app/rank/node_modules /app/rank/node_modules
+COPY --from=rank-build /app/rank/package.json /app/rank/package.json
+COPY --from=rank-build /app/rank/data /app/data
+
+EXPOSE 8080
+CMD ["node", "/app/rank/dist/server.js"]

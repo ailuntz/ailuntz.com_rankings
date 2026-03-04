@@ -10,6 +10,42 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { countries, getDataFilename } from './constants/countries'
 import { languages, getTrendingFilename } from './constants/languages'
 
+interface HealthMeta {
+  ok: boolean
+  refreshing: boolean
+  lastRefreshAt: string | null
+  lastRefreshError: string | null
+  lastDataDate?: string | null
+  timezone?: string
+}
+
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'https://api.ailuntz.com').replace(/\/$/, '')
+const API_PREFIX = (import.meta.env.VITE_API_PREFIX || '/rankings').replace(/\/$/, '')
+
+function buildApiUrl(path: string): string {
+  return `${API_BASE_URL}${API_PREFIX}${path}`
+}
+
+async function fetchApiJson<T>(filename: string): Promise<T> {
+  const response = await fetch(buildApiUrl(`/data/${filename}`))
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status} when fetching ${filename}`)
+  }
+  return response.json() as Promise<T>
+}
+
+function formatDateOnly(dateText?: string | null): string {
+  if (!dateText) return '未知'
+  return dateText
+}
+
+function formatDateTime(iso?: string | null): string {
+  if (!iso) return '未知'
+  const date = new Date(iso)
+  if (Number.isNaN(date.getTime())) return '未知'
+  return date.toLocaleString('zh-CN', { hour12: false })
+}
+
 function App() {
   // 国家选择状态（默认选择全球）
   const [selectedUserCountry, setSelectedUserCountry] = useState('global')
@@ -19,7 +55,7 @@ function App() {
   const [selectedRepoType, setSelectedRepoType] = useState<'all' | 'user' | 'org'>('all')
 
   // 编程语言选择状态（默认全部）
-  const [selectedLanguage, setSelectedLanguage] = useState('')
+  const [selectedLanguage, setSelectedLanguage] = useState('all')
 
   // 数据状态
   const [users, setUsers] = useState<UserData[]>([])
@@ -28,12 +64,28 @@ function App() {
   const [trendingDaily, setTrendingDaily] = useState<TrendingData[]>([])
   const [trendingWeekly, setTrendingWeekly] = useState<TrendingData[]>([])
   const [trendingMonthly, setTrendingMonthly] = useState<TrendingData[]>([])
+  const [healthMeta, setHealthMeta] = useState<HealthMeta | null>(null)
   const [loading, setLoading] = useState(true)
   const { theme, setTheme } = useTheme()
 
   // 加载初始数据（标记为不加载中）
   useEffect(() => {
     setLoading(false)
+  }, [])
+
+  useEffect(() => {
+    fetch(buildApiUrl('/health'))
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status} when fetching health`)
+        }
+        return res.json()
+      })
+      .then(data => setHealthMeta(data))
+      .catch(err => {
+        console.error('获取健康状态失败:', err)
+        setHealthMeta(null)
+      })
   }, [])
 
   // 根据选择的语言加载趋势数据
@@ -43,9 +95,9 @@ function App() {
     const monthlyFile = getTrendingFilename('monthly', selectedLanguage)
 
     Promise.all([
-      fetch(`/data/${dailyFile}`).then(res => res.json()),
-      fetch(`/data/${weeklyFile}`).then(res => res.json()),
-      fetch(`/data/${monthlyFile}`).then(res => res.json()),
+      fetchApiJson<TrendingData[]>(dailyFile),
+      fetchApiJson<TrendingData[]>(weeklyFile),
+      fetchApiJson<TrendingData[]>(monthlyFile),
     ])
       .then(([daily, weekly, monthly]) => {
         setTrendingDaily(daily)
@@ -69,8 +121,7 @@ function App() {
       filename = 'repos-org.json'
     }
 
-    fetch(`/data/${filename}`)
-      .then(res => res.json())
+    fetchApiJson<RepoData[]>(filename)
       .then(data => setRepos(data))
       .catch(err => {
         console.error(`获取${selectedRepoType === 'user' ? '用户' : selectedRepoType === 'org' ? '组织' : '全部'}仓库数据失败:`, err)
@@ -81,8 +132,7 @@ function App() {
   // 根据选择的国家加载用户数据
   useEffect(() => {
     const filename = getDataFilename('user', selectedUserCountry)
-    fetch(`/data/${filename}`)
-      .then(res => res.json())
+    fetchApiJson<UserData[]>(filename)
       .then(data => setUsers(data))
       .catch(err => {
         console.error(`获取${selectedUserCountry || '全球'}用户数据失败:`, err)
@@ -93,8 +143,7 @@ function App() {
   // 根据选择的国家加载组织数据
   useEffect(() => {
     const filename = getDataFilename('org', selectedOrgCountry)
-    fetch(`/data/${filename}`)
-      .then(res => res.json())
+    fetchApiJson<UserData[]>(filename)
       .then(data => setOrgs(data))
       .catch(err => {
         console.error(`获取${selectedOrgCountry || '全球'}组织数据失败:`, err)
@@ -350,6 +399,40 @@ function App() {
             </Tabs>
           </CardContent>
         </Card>
+
+        <footer className="mt-10 pt-2">
+          <h2 className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-blue-600 via-teal-600 to-emerald-600 dark:from-blue-400 dark:via-teal-400 dark:to-emerald-400 bg-clip-text text-transparent">
+            Data Freshness & Open Source
+          </h2>
+          <div className="mt-2 text-sm">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+              <p className="text-[var(--color-text-secondary)]">
+                数据日期：{formatDateOnly(healthMeta?.lastDataDate)} ｜ 最近刷新：{formatDateTime(healthMeta?.lastRefreshAt)} ｜ 状态：{healthMeta?.refreshing ? '抓取中' : healthMeta?.lastRefreshError ? '异常' : '正常'}
+              </p>
+              <a
+                href="https://github.com/ailuntz/ailuntz.com_ranking"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-[var(--color-text-secondary)] md:text-right"
+              >
+                仓库地址
+              </a>
+            </div>
+            <div className="mt-1 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+              <p className="text-[var(--color-text-tertiary)]">
+                来源：GitHub API & GitHub Trending {healthMeta?.timezone ? `(${healthMeta.timezone})` : ''}
+              </p>
+              <a
+                href="https://github.com/ailuntz/ailuntz.com_ranking/issues"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors text-[var(--color-text-secondary)] md:text-right"
+              >
+                反馈 Issue
+              </a>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   )

@@ -3,16 +3,49 @@ import { config } from './config.js';
 import { saveJSON, sleep, printRateLimit } from './utils.js';
 import type { UserData } from './types.js';
 
+function shouldRetry(status?: number): boolean {
+  return status === 502 || status === 503 || status === 504 || status === 429;
+}
+
+function formatError(error: any): string {
+  const status = error?.status ? `status=${error.status}` : '';
+  const message = error?.message || String(error);
+  return [status, message].filter(Boolean).join(' ');
+}
+
+async function requestWithRetry<T>(fn: () => Promise<T>, maxRetries = 3): Promise<T> {
+  let attempt = 0;
+  let lastError: any;
+
+  while (attempt <= maxRetries) {
+    try {
+      return await fn();
+    } catch (error: any) {
+      lastError = error;
+      const status = error?.status as number | undefined;
+      if (!shouldRetry(status) || attempt === maxRetries) {
+        break;
+      }
+      const delayMs = 1000 * (attempt + 1);
+      console.warn(`   ⚠️  请求失败，${delayMs}ms 后重试 (${attempt + 1}/${maxRetries})：${formatError(error)}`);
+      await sleep(delayMs);
+      attempt += 1;
+    }
+  }
+
+  throw lastError;
+}
+
 // 获取用户详细信息
 async function getUserDetails(username: string, headers: { authorization?: string }): Promise<any> {
   try {
-    const response = await request('GET /users/{username}', {
+    const response = await requestWithRetry(() => request('GET /users/{username}', {
       headers,
       username,
-    });
+    }));
     return response.data;
   } catch (error) {
-    console.error(`   ⚠️  获取 ${username} 详细信息失败`);
+    console.error(`   ⚠️  获取 ${username} 详细信息失败: ${formatError(error)}`);
     return null;
   }
 }
@@ -38,6 +71,33 @@ interface FetchUsersOptions {
   country?: string; // 国家代码，空字符串表示全球
 }
 
+function getLocationTerms(country: string): string[] {
+  const aliases: Record<string, string[]> = {
+    'United States': ['United States', 'USA', 'US', 'America'],
+    'United Kingdom': ['United Kingdom', 'UK', 'England', 'Britain', 'Great Britain'],
+    'South Korea': ['South Korea', 'Korea', 'Republic of Korea'],
+    Russia: ['Russia', 'Russian Federation'],
+    Netherlands: ['Netherlands', 'Holland'],
+    Turkey: ['Turkey', 'Turkiye'],
+    Brazil: ['Brazil', 'Brasil'],
+    Germany: ['Germany', 'Deutschland'],
+    Spain: ['Spain', 'Espana'],
+    Italy: ['Italy', 'Italia'],
+    Japan: ['Japan', 'Nippon'],
+    Mexico: ['Mexico', 'México'],
+    Indonesia: ['Indonesia', 'ID'],
+    Canada: ['Canada', 'CA'],
+    France: ['France', 'FR'],
+    Australia: ['Australia', 'AU'],
+    India: ['India', 'IN'],
+    China: ['China', 'PRC', 'CN'],
+    Pakistan: ['Pakistan', 'PK'],
+    Poland: ['Poland', 'PL'],
+  };
+
+  return aliases[country] || [country];
+}
+
 async function fetchUsers(options: FetchUsersOptions = {}) {
   const { userType = 'user', country = '' } = options;
 
@@ -55,53 +115,56 @@ async function fetchUsers(options: FetchUsersOptions = {}) {
   const pagesNeeded = Math.ceil(config.maxRank / config.perPage);
 
   try {
-    for (let page = 1; page <= pagesNeeded; page++) {
-      console.log(`📄 正在获取第 ${page}/${pagesNeeded} 页...`);
+    const locationTerms = country ? getLocationTerms(country) : [''];
 
-      // 构建查询字符串
-      let query = '';
-      if (userType === 'org') {
-        // 组织查询
-        query = `followers:>${config.minFollowers.org}+type:org`;
-        if (country) {
-          query += `+location:${country}`;
+    for (const term of locationTerms) {
+      if (users.length >= config.maxRank) break;
+
+      for (let page = 1; page <= pagesNeeded; page++) {
+        if (users.length >= config.maxRank) break;
+        console.log(`📄 正在获取第 ${page}/${pagesNeeded} 页...`);
+
+        // 构建查询字符串（使用空格分隔，避免复杂 OR 表达式兼容问题）
+        const queryParts: string[] = [];
+        if (userType === 'org') {
+          queryParts.push('type:org');
+          if (!country) queryParts.push(`followers:>${config.minFollowers.org}`);
+        } else {
+          queryParts.push('type:user');
+          if (!country) queryParts.push(`followers:>${config.minFollowers.global}`);
         }
-      } else {
-        // 用户查询
-        const minFollowers = country === 'China' ? config.minFollowers.china : config.minFollowers.global;
-        query = `followers:>${minFollowers}`;
-        if (country) {
-          query += `+location:${country}`;
+        if (country && term) {
+          queryParts.push(`location:"${term}"`);
         }
-      }
+        const query = queryParts.join(' ');
 
-      const response = await request('GET /search/users', {
-        headers,
-        q: query,
-        page,
-        per_page: config.perPage,
-        sort: 'followers',
-        order: 'desc',
-      });
+        const response = await requestWithRetry(() => request('GET /search/users', {
+          headers,
+          q: query,
+          page,
+          per_page: config.perPage,
+          sort: 'followers',
+          order: 'desc',
+        }));
+        if (response.data && response.data.items) {
+          console.log(`   ✓ 获取 ${response.data.items.length} 条搜索结果${country ? ` (location: ${term})` : ''}`);
+          printRateLimit(response.headers as any);
 
-      if (response.data && response.data.items) {
-        console.log(`   ✓ 获取 ${response.data.items.length} 条搜索结果`);
-        printRateLimit(response.headers as any);
-
-        // 获取每个用户的详细信息
-        console.log(`   📊 正在获取详细信息...`);
-        for (const item of response.data.items) {
-          const details = await getUserDetails(item.login, headers);
-          if (details) {
-            users.push(extractUserData(details));
+          // 获取每个用户的详细信息
+          console.log(`   📊 正在获取详细信息...`);
+          for (const item of response.data.items) {
+            const details = await getUserDetails(item.login, headers);
+            if (details) {
+              users.push(extractUserData(details));
+            }
+            await sleep(50); // 避免触发 API 限制
           }
-          await sleep(50); // 避免触发 API 限制
         }
-      }
 
-      if (page < pagesNeeded) {
-        console.log('   ⏳ 等待 1 秒...\n');
-        await sleep(1000);
+        if (page < pagesNeeded) {
+          console.log('   ⏳ 等待 1 秒...\n');
+          await sleep(1000);
+        }
       }
     }
 
@@ -110,8 +173,11 @@ async function fetchUsers(options: FetchUsersOptions = {}) {
       new Map(users.map(user => [user.login, user])).values()
     );
 
-    // 添加排名并限制为前 200
-    const rankedUsers = uniqueUsers
+    // 确保国家榜按 followers 从高到低
+    const sortedUsers = uniqueUsers.sort((a, b) => b.followers - a.followers);
+
+    // 添加排名并限制为前 N
+    const rankedUsers = sortedUsers
       .slice(0, config.maxRank)
       .map((user, index) => ({
         ...user,
@@ -136,7 +202,7 @@ async function fetchUsers(options: FetchUsersOptions = {}) {
     console.log(`\n✨ 完成！共获取 ${rankedUsers.length} 个${countryLabel}${typeLabel}数据\n`);
 
   } catch (error) {
-    console.error('❌ 获取数据失败:', error);
+    console.error('❌ 获取数据失败:', formatError(error));
     throw error;
   }
 }

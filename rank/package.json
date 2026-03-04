@@ -13,6 +13,8 @@
     "fetch:trending:monthly": "node dist/fetchTrending.js monthly",
     "fetch:all": "npm run fetch:users && npm run fetch:users:china && npm run fetch:users:org && npm run fetch:repos && npm run fetch:trending && npm run fetch:trending:weekly && npm run fetch:trending:monthly",
     "build": "tsc",
+    "start": "node dist/server.js",
+    "start:no-fetch": "AUTO_FETCH=false node dist/server.js",
     "dev": "tsc --watch",
     "clean": "rm -rf dist data"
   },

@@ -1,148 +1,108 @@
-# GitHub Ranking Project
+# GitHub Rankings
 
-GitHub 排名系统 - 现代化重构版
+GitHub 开发者 / 仓库 / 趋势榜单项目。  
+当前部署模式为前后端分离：
 
-## 项目简介
+- 前端：静态文件部署（例如 `/html/ailuntz.com_rankings`）
+- 后端：Docker 容器，仅提供采集与 API
 
-这是一个基于两个老旧 GitHub 排名项目的现代化重构：
-- [gitstar-ranking](https://github.com/k0kubun/gitstar-ranking) (已移除)
-- [github-rank](https://github.com/jaywcjlove/github-rank) (参考保留)
+## API Base
 
-## 项目结构
+生产环境 API 建议路径：
 
+- `https://api.ailuntz.com/rankings/health`
+- `https://api.ailuntz.com/rankings/data/repos.json`
+
+## Features
+
+- 用户榜：全球 + 20 国家
+- 组织榜：全球 + 20 国家
+- 仓库榜：全部 / 用户 / 组织
+- 趋势榜：daily / weekly / monthly + 多语言
+- 每日零点调度
+- 启动时按“今日数据”检查并查缺补漏
+- 任务失败不阻断整轮（记录失败并继续）
+
+## Repo Structure
+
+```text
+ailuntz.com_rankings/
+├── frontend/            # 前端（Vite + React）
+├── rank/                # 后端采集与 API（Node + TS）
+├── Dockerfile.rankings  # 后端容器镜像
+└── README.md
 ```
-ailuntz.com_ranking/
-├── github-rank/          # 老项目参考（保留）
-├── rank/                 # 新项目 - 后端数据获取
-│   ├── src/             # TypeScript 源码
-│   ├── data/            # 输出的 JSON 数据
-│   └── README.md        # 后端文档
-└── README.md            # 本文件
-```
 
-## 技术栈
-
-### 后端（当前完成）
-- Node.js + TypeScript
-- GitHub API v3
-- Cheerio（网页爬虫）
-- 数据输出：JSON 文件
-
-### 前端（计划）
-- React 18
-- shadcn/ui
-- TailwindCSS
-- Radix UI
-- Vite
-
-## 核心改进
-
-### 相比老项目的优化
-
-1. **删除 gitstar-ranking**
-   - 过度工程化（Rails + 数据库）
-   - 运维成本高
-   - 技术栈老旧
-
-2. **精简数据结构**
-   - 只保留展示必需的字段
-   - 减少 JSON 文件体积约 70%
-
-3. **限制数据量**
-   - 只保留前 200 名排名
-   - 减少 API 请求次数
-   - 加快页面加载速度
-
-4. **现代化架构**
-   - TypeScript 类型安全
-   - 静态生成（SSG）
-   - 零服务器成本
-
-## 数据来源
-
-### 1. 用户排名
-- **API**: GitHub Search Users API
-- **条件**: followers > 8000
-- **分类**: 全球用户、中国用户、组织
-- **数量**: Top 200
-
-### 2. 仓库排名
-- **API**: GitHub Search Repositories API
-- **条件**: stars > 8000
-- **数量**: Top 200
-
-### 3. Trending 趋势
-- **方式**: 网页爬虫
-- **URL**: https://github.com/trending
-- **周期**: 日榜、周榜、月榜
-- **数量**: 约 25 条（GitHub 页面限制）
-
-## 快速开始
-
-### 后端开发
+## Run Backend With Docker
 
 ```bash
-# 进入后端目录
-cd rank
+docker run -d --name ailuntz-rankings -p 3001:8080 \
+  -e GITHUB_TOKEN=YOUR_GITHUB_TOKEN \
+  -e FETCH_TIMEZONE=Asia/Shanghai \
+  -e MAX_RANK=200 \
+  -e API_PREFIX=/rankings \
+  -e TASK_DELAY_MS=10000 \
+  -e CORS_ALLOW_ORIGIN=* \
+  -v ailuntz_ranking_data:/app/data \
+  ailuntz/rankings:latest
+```
 
-# 安装依赖
+## Environment Variables
+
+- `GITHUB_TOKEN`: GitHub token（必填，避免低额度）
+- `FETCH_TIMEZONE`: 调度时区，默认 `Asia/Shanghai`
+- `MAX_RANK`: 每类榜单最大条数，默认 `200`
+- `API_PREFIX`: API 前缀，默认 `/rankings`
+- `TASK_DELAY_MS`: 任务间隔毫秒，默认 `10000`
+- `CORS_ALLOW_ORIGIN`: 跨域来源，默认 `*`
+- `DATA_DIR`: 数据目录，默认 `./data`
+- `AUTO_FETCH`: 是否自动调度，默认 `true`
+
+## Nginx Reverse Proxy (api.ailuntz.com)
+
+```nginx
+server {
+    listen 443 ssl;
+    http2 on;
+    server_name api.ailuntz.com;
+
+    ssl_certificate /usr/share/nginx/html_cert/ailuntz.com.pem;
+    ssl_certificate_key /usr/share/nginx/html_cert/ailuntz.com.key;
+
+    location /rankings/ {
+        proxy_pass http://127.0.0.1:3001;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_read_timeout 60s;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+    }
+}
+```
+
+## Frontend Build & Manual Copy
+
+```bash
+cd frontend
 npm install
-
-# 配置 GitHub Token
-cp .env.example .env
-# 编辑 .env 填入 token
-
-# 编译 TypeScript
 npm run build
-
-# 获取数据
-npm run fetch:all
+rm -rf /Volumes/usb_main/usb_web/html/ailuntz.com_rankings/*
+cp -R dist/* /Volumes/usb_main/usb_web/html/ailuntz.com_rankings/
 ```
 
-详见 [rank/README.md](./rank/README.md)
+前端默认读取：
 
-### 前端开发（待开发）
+- `VITE_API_BASE_URL=https://api.ailuntz.com`
+- `VITE_API_PREFIX=/rankings`
 
-即将使用：
-- React 18
-- shadcn/ui 组件库
-- TailwindCSS 样式
-- Radix UI 无障碍组件
+## Notes
 
-## 数据文件
+- GitHub Search API 容易限流，建议保留 `TASK_DELAY_MS` 并使用有效 token。
+- Token 不要提交到代码或日志。
 
-后端生成的 JSON 文件位于 `rank/data/`:
-
-```
-data/
-├── users.json              # 全球用户 Top 200
-├── users-china.json        # 中国用户 Top 200
-├── users-org.json          # 组织 Top 200
-├── repos.json              # 仓库 Top 200
-├── trending-daily.json     # 日榜 ~25 条
-├── trending-weekly.json    # 周榜 ~25 条
-└── trending-monthly.json   # 月榜 ~25 条
-```
-
-## 开发计划
-
-- [x] 删除旧项目 gitstar-ranking
-- [x] 精简 JSON 数据字段
-- [x] 实现前 200 名数据过滤
-- [x] 后端数据获取脚本
-- [ ] React 前端项目搭建
-- [ ] shadcn/ui 组件集成
-- [ ] 响应式页面布局
-- [ ] 数据可视化图表
-- [ ] 搜索和筛选功能
-- [ ] 暗黑模式支持
-- [ ] 部署到 Vercel/Netlify
-
-## 参考项目
-
-- 原项目 1: https://github.com/k0kubun/gitstar-ranking
-- 原项目 2: https://github.com/jaywcjlove/github-rank
-
-## License
-
-MIT

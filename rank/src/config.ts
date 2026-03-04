@@ -6,11 +6,11 @@ export const config = {
   // GitHub Token
   githubToken: process.env.GITHUB_TOKEN || '',
 
-  // 排名限制（测试阶段设为10，生产环境改为200）
-  maxRank: 10,
+  // 排名限制（默认200，可通过环境变量覆盖）
+  maxRank: parseInt(process.env.MAX_RANK || '200', 10),
 
-  // 每页数据量
-  perPage: 100,
+  // 每页数据量（动态收敛，减少无效请求）
+  perPage: Math.max(1, Math.min(100, parseInt(process.env.MAX_RANK || '200', 10) * 2)),
 
   // API 查询条件（优化版，根据实际测试调整）
   // 根据 2024 年数据分析：

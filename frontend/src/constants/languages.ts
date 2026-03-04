@@ -6,7 +6,7 @@ export interface Language {
 }
 
 export const languages: Language[] = [
-  { code: '', name: '全部语言', icon: '🌐' },
+  { code: 'all', name: '全部语言', icon: '🌐' },
   { code: 'javascript', name: 'JavaScript', icon: '🟨' },
   { code: 'typescript', name: 'TypeScript', icon: '🔷' },
   { code: 'python', name: 'Python', icon: '🐍' },
@@ -33,7 +33,7 @@ export const languages: Language[] = [
 // 将语言代码转换为文件名格式
 export function getTrendingFilename(timeRange: string, languageCode: string): string {
   let filename = `trending-${timeRange}`;
-  if (languageCode) {
+  if (languageCode && languageCode !== 'all') {
     // C# 的特殊处理
     const safeLang = languageCode.replace(/%23/g, 'sharp').replace(/[^a-z0-9-]/gi, '-');
     filename += `-${safeLang}`;

@@ -27,6 +27,14 @@ interface FetchReposOptions {
   ownerType?: OwnerType;
 }
 
+function matchOwnerType(rawData: any, ownerType: OwnerType): boolean {
+  if (ownerType === 'all') return true;
+  const ownerTypeFromApi = rawData?.owner?.type;
+  if (ownerType === 'user') return ownerTypeFromApi === 'User';
+  if (ownerType === 'org') return ownerTypeFromApi === 'Organization';
+  return true;
+}
+
 async function fetchRepos(options: FetchReposOptions = {}) {
   const { ownerType = 'all' } = options;
 
@@ -44,23 +52,15 @@ async function fetchRepos(options: FetchReposOptions = {}) {
   }
 
   const repos: Omit<RepoData, 'rank'>[] = [];
-  const pagesNeeded = Math.ceil(config.maxRank / config.perPage);
+  const maxPages = 10; // Search API 最多可翻到约 1000 条结果（每页 100）
 
   try {
-    for (let page = 1; page <= pagesNeeded; page++) {
-      console.log(`📄 正在获取第 ${page}/${pagesNeeded} 页...`);
-
-      // 构建查询字符串
-      let query = `stars:>${config.minStars}`;
-      if (ownerType === 'user') {
-        query += '+user:*'; // 只搜索用户仓库
-      } else if (ownerType === 'org') {
-        query += '+org:*'; // 只搜索组织仓库
-      }
+    for (let page = 1; page <= maxPages && repos.length < config.maxRank; page++) {
+      console.log(`📄 正在获取第 ${page} 页...`);
 
       const response = await request('GET /search/repositories', {
         headers,
-        q: query,
+        q: `stars:>${config.minStars}`,
         page,
         per_page: config.perPage,
         sort: 'stars',
@@ -68,13 +68,19 @@ async function fetchRepos(options: FetchReposOptions = {}) {
       });
 
       if (response.data && response.data.items) {
-        const items = response.data.items.map(extractRepoData);
+        const filteredItems = response.data.items.filter(item => matchOwnerType(item, ownerType));
+        const items = filteredItems.map(extractRepoData);
         repos.push(...items);
-        console.log(`   ✓ 获取 ${items.length} 条数据`);
+        console.log(`   ✓ 本页原始 ${response.data.items.length} 条，过滤后 ${items.length} 条，累计 ${repos.length} 条`);
         printRateLimit(response.headers as any);
+
+        // 当前页已经没有结果时提前结束
+        if (response.data.items.length === 0) {
+          break;
+        }
       }
 
-      if (page < pagesNeeded) {
+      if (page < maxPages && repos.length < config.maxRank) {
         console.log('   ⏳ 等待 1 秒...\n');
         await sleep(1000);
       }
