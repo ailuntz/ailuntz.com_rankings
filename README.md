@@ -1,5 +1,9 @@
 # GitHub Rankings
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/ailuntz/rankings)](https://hub.docker.com/r/ailuntz/rankings)
+[![Docker Image Size](https://img.shields.io/docker/image-size/ailuntz/rankings/latest)](https://hub.docker.com/r/ailuntz/rankings)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 GitHub 开发者 / 仓库 / 趋势榜单项目。  
 当前部署模式为前后端分离：
 
@@ -105,4 +109,3 @@ cp -R dist/* /Volumes/usb_main/usb_web/html/ailuntz.com_rankings/
 
 - GitHub Search API 容易限流，建议保留 `TASK_DELAY_MS` 并使用有效 token。
 - Token 不要提交到代码或日志。
-
